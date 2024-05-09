@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto-View</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Mukta:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="scene">
+      <div class="navbar">
+        <div class="left-nav">
+            <div class="logo"><img src="assets/graph logo.png" alt="Logo" width="40" height="40"></div>
+            <div class="name">CryptoView</div>
+        </div>
+        <div class="right-nav">
+            <div class="home-btns"><a href="#">Home</a></div> 
+            <div class="home-btns"><a href="/all">All Prices</a></div> 
+        </div>
+      </div>
+      <div class="hero-main-line">
+        <div class="compare">Compare.</div>
+        <div class="analyse">Analyse.</div>
+        <div class="invest">Invest.</div>
+      </div>
+    </div>
+     <section class="features-section">
+        <img src="" alt="">
+        <p>This is a paragraph describing some features.</p>
+        <ul>
+            <li>Feature 1</li>
+            <li>Feature 2</li>
+            <li>Feature 3</li>
+        </ul>
+    </section>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+<script type="module">
+        
+let container;
+let camera;
+let renderer;
+let scene;
+let model;
+
+function init(){
+    container = document.querySelector('.scene');
+
+    // Creating scene 
+    scene = new THREE.Scene(); // Changed to THREE.Scene()
+
+    const fov = 50;
+    const aspect = container.clientWidth / container.clientHeight;
+    const near = 0.1;
+    const far = 1000;
+
+    // Camera setup
+    camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    camera.position.set(-200, -10, 350);
+
+    const ambient = new THREE.AmbientLight(0x404040, 3);
+    scene.add(ambient);
+
+    const light = new THREE.DirectionalLight(0xffffff, 2);
+    light.position.set(40, 30, 60);
+    scene.add(light);
+    
+
+    // Renderer
+    renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+    renderer.setSize(container.clientWidth, container.clientHeight); // Changed to setSize
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    container.appendChild(renderer.domElement);
+
+    // Load model 
+    let loader = new THREE.GLTFLoader();
+    loader.load('scene.gltf', function(gltf){ // Changed to loader.load()
+        model = gltf.scene;
+        scene.add(model);
+        model.scale.set(0.3, 0.3, 0.3);
+        model = gltf.scene.children[0];
+        animate();
+    });
+
+    // Add camera controls
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.update();
+
+}
+function animate() {
+    requestAnimationFrame(animate);
+
+    const viewportWidth = window.innerWidth;
+
+    if (viewportWidth < 1400) {
+        if (viewportWidth < 960) {
+            camera.position.set(0, -10, 400);
+        }else if (viewportWidth < 1200) {
+            camera.position.set(-100, -10, 350);
+        } else {
+            const offset = Math.max(0, 1400 - viewportWidth);
+            camera.position.set(-150, -10, 350);
+        }
+    } else {
+        camera.position.set(-190, -10, 350);
+    }
+
+    camera.aspect = viewportWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    if (model) {
+        model.rotation.z += 0.005;
+    }
+
+    renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', function () {
+    const viewportWidth = window.innerWidth;
+
+    renderer.setSize(viewportWidth, window.innerHeight);
+    camera.aspect = viewportWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+});
+
+init();
+
+</script>
+
+</body>
+</html>

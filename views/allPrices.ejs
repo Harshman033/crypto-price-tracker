@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto-View All prices</title>
+    <link rel="stylesheet" href="styles/style2.css">
+</head>
+<body>
+    <main class="table" id="pricing_table">
+    <div class="table__body">
+        <table>
+            <thead>
+                <tr>
+                    <th> Rank <span class="icon-arrow"></span></th>
+                    <th> Name <span class="icon-arrow"></span></th>
+                    <th> Current Price <span class="icon-arrow"></span></th>
+                    <th> Market Cap <span class="icon-arrow"></span></th>
+                    <th> 24hr Volume <span class="icon-arrow"></span></th>
+                    <th> Total Supply <span class="icon-arrow"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <% if (data) {
+                        data.forEach(coin => { %>
+                            <tr>
+                                <td> <%= coin.market_cap_rank %> </td>
+                                <td> <%= coin.name %> </td>
+                                <td> <%= coin.current_price %> </td>
+                                <td> <%= coin.market_cap %> </td>
+                                <td> <%= coin.total_volume %> </td>
+                                <td> <%= coin.total_supply %> </td>
+                            </tr>
+                        <% });
+                    } %>
+                </tr>
+            </tbody>
+        </table>
+        <%if (locals.error) {%>
+            <div id="tag-error" class="tag-error">
+              <%=error%>
+            </div>
+            <%}%>
+    </div>
+    </main>
+</body>
+</html>
