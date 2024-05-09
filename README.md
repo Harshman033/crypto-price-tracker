@@ -27,4 +27,7 @@ Lastly, run the project on your local server using-
 
  - [3D Model Link]( https://skfb.ly/6YZBX )
  - [Thanks CoinGecko](https://www.coingecko.com/)
- 
+
+## Upcoming changes
+- More pages in the home Section
+- Animations
