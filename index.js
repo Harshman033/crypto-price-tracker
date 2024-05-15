@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 
 app.get("/all", async (req, res) => {
   try {
-    const response = await axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&page=1&per_page=100&x_cg_demo_api_key=CG-eFYwrgHm9RnASxatp9QDMzhA");
+    const response = await axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&page=1&per_page=100&x_cg_demo_api_key=");
     const result = response.data;
     res.render("allPrices.ejs", { data: result });
     console.log(result);
