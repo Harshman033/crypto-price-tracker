@@ -18,6 +18,7 @@ Then install the required npm packages using-
  npm i express axios
 ```
 Note- Make sure that inside "package.json" file the "type" is set to "module".
+Note - I have removed my API Key. You have to create your own APIKey from CoinGecko website and use it here.
 
 Lastly, run the project on your local server using-
 ```bash
@@ -31,5 +32,3 @@ Lastly, run the project on your local server using-
 ## Upcoming changes
 - More pages in the home Section
 - Animations
-
-Note - Please don't make too many API requests as I am using the free version of CoinGecko. You can also create your own APIKey from their website and use it here.
